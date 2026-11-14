@@ -1,0 +1,1157 @@
+/* =========================================================
+   ЛИЧНОЕ ПОРТФОЛИО — ОСНОВНЫЕ СТИЛИ
+   Совместимо с текущим index.html
+========================================================= */
+
+/* 1. ПЕРЕМЕННЫЕ И СБРОС */
+
+:root {
+    color-scheme: dark;
+
+    --bg-main: #111019;
+    --bg-secondary: #1d1b27;
+    --bg-card: #22202d;
+    --bg-card-hover: #2a2737;
+
+    --accent: #9b7bf7;
+    --accent-light: #b69aff;
+    --accent-dark: #805ad5;
+
+    --text-main: #f1f1f5;
+    --text-secondary: #bcbcc8;
+    --text-muted: #92929f;
+
+    --border: #353242;
+    --border-accent: #7658b8;
+
+    --radius: 16px;
+    --container-width: 1100px;
+
+    --section-space: 76px;
+    --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+    --card-hover-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.24),
+        0 0 24px rgba(155, 123, 247, 0.12);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    min-width: 320px;
+    margin: 0;
+    overflow-x: hidden;
+
+    color: var(--text-main);
+    background: var(--bg-main);
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+
+    isolation: isolate;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+    font: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+::selection {
+    color: #fff;
+    background: rgba(155, 123, 247, 0.45);
+}
+
+
+/* 2. ФОНОВОЕ СВЕЧЕНИЕ И CANVAS */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: -2;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 25%,
+            rgba(125, 75, 220, 0.22),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 80% 65%,
+            rgba(91, 55, 180, 0.20),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(145, 75, 230, 0.12),
+            transparent 35%
+        );
+
+    animation: purple-glow 18s ease-in-out infinite alternate;
+}
+
+#particles-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+@keyframes purple-glow {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(2%, 2%, 0) scale(1.06);
+    }
+
+    100% {
+        transform: translate3d(-1%, 3%, 0) scale(1.02);
+    }
+}
+
+
+/* 3. ОБЩИЙ КОНТЕЙНЕР */
+
+.container {
+    width: min(90%, var(--container-width));
+    margin-inline: auto;
+}
+
+
+/* 4. ШАПКА И НАВИГАЦИЯ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(29, 27, 39, 0.88);
+    border-bottom: 1px solid var(--border);
+
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+}
+
+.header-inner {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    flex: 0 0 auto;
+
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+}
+
+.navigation a {
+    color: var(--text-secondary);
+    font-size: 15px;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.navigation a:hover {
+    color: var(--accent-light);
+}
+
+.menu-toggle {
+    display: none;
+
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    color: #fff;
+    background: var(--bg-card);
+
+    font-size: 23px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+}
+
+
+/* 5. ГЛАВНЫЙ ЭКРАН */
+
+.hero {
+    padding: 110px 0 100px;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(128, 90, 213, 0.15),
+            transparent 65%
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+    margin-inline: auto;
+}
+
+.hero-label {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 7px 15px;
+
+    color: var(--accent-light);
+    background: rgba(155, 123, 247, 0.07);
+    border: 1px solid var(--border-accent);
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin: 0 0 22px;
+
+    color: #fff;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--accent-light);
+}
+
+.hero-description {
+    max-width: 680px;
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    margin-top: 32px;
+}
+
+
+/* 6. ОБЩИЕ СЕКЦИИ И ЗАГОЛОВКИ */
+
+section {
+    padding: var(--section-space) 0;
+}
+
+.section-title {
+    margin: 0 0 18px;
+
+    color: #fff;
+    font-size: clamp(27px, 4vw, 35px);
+    line-height: 1.25;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.section-description {
+    max-width: 650px;
+    margin: 0 auto 40px;
+
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+
+/* 7. ОБО МНЕ */
+
+.about-card {
+    position: relative;
+    overflow: hidden;
+
+    width: 100%;
+    padding: 34px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(155, 123, 247, 0.13),
+            rgba(155, 123, 247, 0.035) 65%,
+            rgba(255, 255, 255, 0.015)
+        ),
+        var(--bg-card);
+
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.about-card::before,
+.skill-card::before,
+.figma-card::before,
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: -90px;
+
+    width: 210px;
+    height: 210px;
+
+    background: radial-gradient(
+        circle,
+        rgba(155, 123, 247, 0.14),
+        transparent 70%
+    );
+
+    pointer-events: none;
+}
+
+.about-content,
+.about-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.about-content h3,
+.about-card h3 {
+    margin: 0 0 14px;
+
+    color: var(--accent-light);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.about-content p,
+.about-card p {
+    margin: 0 0 14px;
+
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.about-content p:last-child,
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-light);
+    box-shadow: var(--card-hover-shadow);
+}
+
+
+/* 8. НАВЫКИ */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 24px;
+}
+
+.skill-card {
+    position: relative;
+    overflow: hidden;
+
+    grid-column: span 2;
+    min-width: 0;
+    min-height: 290px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(155, 123, 247, 0.13),
+            rgba(155, 123, 247, 0.035) 65%,
+            rgba(255, 255, 255, 0.015)
+        ),
+        var(--bg-card);
+
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Центрируем нижний ряд из двух карточек */
+.skill-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.skill-card:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+.skill-icon {
+    position: relative;
+    z-index: 1;
+
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-bottom: 24px;
+
+    background: rgba(155, 123, 247, 0.15);
+    border: 1px solid rgba(155, 123, 247, 0.28);
+    border-radius: 16px;
+}
+
+.skill-icon i,
+.figma-icon i {
+    font-size: 34px;
+    line-height: 1;
+    font-style: normal;
+}
+
+.skill-icon-pair {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+.skill-icon-pair .skill-icon {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.skill-card h3 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 14px;
+
+    color: var(--accent-light);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.skill-card p {
+    position: relative;
+    z-index: 1;
+
+    flex-grow: 1;
+    margin: 0 0 24px;
+
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.skill-tag {
+    position: relative;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+
+    margin-top: auto;
+    padding: 7px 13px;
+
+    color: var(--accent-light);
+    background: rgba(155, 123, 247, 0.13);
+    border: 1px solid rgba(155, 123, 247, 0.28);
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-light);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.skill-card:hover .skill-icon {
+    background: rgba(155, 123, 247, 0.23);
+    border-color: rgba(155, 123, 247, 0.45);
+}
+
+
+/* 9. FIGMA */
+
+.figma-card {
+    position: relative;
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    margin-top: 30px;
+    padding: 34px 36px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(155, 123, 247, 0.16),
+            rgba(155, 123, 247, 0.04) 55%,
+            rgba(255, 255, 255, 0.015)
+        ),
+        var(--bg-card);
+
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.figma-card::before {
+    width: 240px;
+    height: 240px;
+    right: -70px;
+}
+
+.figma-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-light);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.figma-icon {
+    position: relative;
+    z-index: 1;
+
+    width: 76px;
+    height: 76px;
+    flex: 0 0 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(155, 123, 247, 0.13);
+    border: 1px solid rgba(155, 123, 247, 0.25);
+    border-radius: 20px;
+
+    font-size: 42px;
+}
+
+.figma-content {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+}
+
+.figma-card h3 {
+    margin: 0 0 12px;
+
+    color: var(--accent-light);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.figma-card p {
+    margin: 0 0 18px;
+
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+
+/* 10. ПРОЕКТЫ */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 25px;
+}
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+
+    min-width: 0;
+    min-height: 290px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(155, 123, 247, 0.13),
+            rgba(155, 123, 247, 0.035) 65%,
+            rgba(255, 255, 255, 0.015)
+        ),
+        var(--bg-card);
+
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.project-icon {
+    position: relative;
+    z-index: 1;
+
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 24px;
+
+    background: rgba(155, 123, 247, 0.15);
+    border: 1px solid rgba(155, 123, 247, 0.28);
+    border-radius: 16px;
+
+    font-size: 30px;
+}
+
+.project-card h3 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 14px;
+
+    color: var(--accent-light);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.project-card p {
+    position: relative;
+    z-index: 1;
+
+    flex-grow: 1;
+    margin: 0 0 24px;
+
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.project-status {
+    position: relative;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+
+    margin-top: auto;
+    padding: 7px 13px;
+
+    color: var(--accent-light);
+    background: rgba(155, 123, 247, 0.13);
+    border: 1px solid rgba(155, 123, 247, 0.28);
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-light);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.project-card:hover .project-icon {
+    background: rgba(155, 123, 247, 0.23);
+    border-color: rgba(155, 123, 247, 0.45);
+}
+
+/* Третья карточка занимает всю ширину нижнего ряда */
+.project-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+
+/* 11. КНОПКИ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 12px 25px;
+
+    color: #fff;
+    background: var(--accent-dark);
+    border: 1px solid var(--accent-dark);
+    border-radius: 9px;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(128, 90, 213, 0.2);
+}
+
+.btn-outline {
+    color: var(--accent-light);
+    background: transparent;
+    border-color: var(--border-accent);
+}
+
+.btn-outline:hover {
+    color: #fff;
+    background: rgba(155, 123, 247, 0.12);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+
+/* 12. КОНТАКТЫ */
+
+.contacts {
+    text-align: center;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(128, 90, 213, 0.12),
+            transparent 70%
+        );
+}
+
+.contacts .section-description {
+    margin-bottom: 10px;
+}
+
+.contacts > .container > .btn {
+    margin-top: 24px;
+}
+
+
+/* 13. ПОДВАЛ */
+
+.footer {
+    margin-top: 20px;
+    padding: 30px 0;
+
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+
+/* 14. ДОСТУПНОСТЬ И ФОКУС */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-light);
+    outline-offset: 4px;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* 15. ПЛАНШЕТЫ И НЕБОЛЬШИЕ НОУТБУКИ */
+
+@media (max-width: 900px) {
+    :root {
+        --section-space: 64px;
+    }
+
+    .header-inner {
+        gap: 16px;
+    }
+
+    .navigation {
+        gap: 16px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 90px 0 80px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .skill-card {
+        grid-column: span 2;
+        padding: 26px;
+    }
+
+    .skill-card:nth-child(4) {
+        grid-column: 1 / span 2;
+    }
+
+    .skill-card:nth-child(5) {
+        grid-column: 3 / span 2;
+    }
+
+    .projects-grid {
+        gap: 20px;
+    }
+
+    .project-card {
+        padding: 26px;
+    }
+}
+
+
+/* 16. СМАРТФОНЫ */
+
+@media (max-width: 700px) {
+    :root {
+        --section-space: 52px;
+    }
+
+    .header-inner {
+        min-height: 70px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0 12px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navigation {
+        display: none;
+
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding: 8px 0 16px;
+    }
+
+    .navigation.active {
+        display: flex;
+    }
+
+    .navigation a {
+        padding: 12px 10px;
+
+        border-bottom: 1px solid var(--border);
+
+        font-size: 15px;
+    }
+
+    .navigation a:last-child {
+        border-bottom: 0;
+    }
+
+    .hero {
+        padding: 72px 0 66px;
+    }
+
+    .hero-label {
+        margin-bottom: 17px;
+        padding: 7px 12px;
+
+        font-size: 11px;
+        letter-spacing: 1.4px;
+    }
+
+    .hero h1 {
+        margin-bottom: 18px;
+        font-size: clamp(31px, 7vw, 42px);
+        line-height: 1.18;
+    }
+
+    .hero-description {
+        max-width: 540px;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-top: 27px;
+    }
+
+    .hero-buttons .btn {
+        width: min(100%, 360px);
+        align-self: center;
+    }
+
+    .section-title {
+        font-size: clamp(27px, 7vw, 32px);
+    }
+
+    .section-description {
+        margin-bottom: 30px;
+        font-size: 15px;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .skill-card,
+    .skill-card:nth-child(4),
+    .skill-card:nth-child(5),
+    .project-card,
+    .project-card:last-child:nth-child(odd) {
+        grid-column: 1;
+        min-height: 0;
+        padding: 24px;
+    }
+
+    .skill-card p,
+    .project-card p {
+        margin-bottom: 22px;
+    }
+
+    .figma-card {
+        align-items: flex-start;
+        gap: 18px;
+        margin-top: 22px;
+        padding: 24px;
+    }
+
+    .figma-icon {
+        width: 60px;
+        height: 60px;
+        flex-basis: 60px;
+        border-radius: 16px;
+        font-size: 34px;
+    }
+
+    .figma-icon i {
+        font-size: 30px;
+    }
+
+    .figma-card h3 {
+        font-size: 21px;
+    }
+
+    .about-card {
+        padding: 25px;
+    }
+
+    .about-content h3,
+    .about-card h3 {
+        font-size: 20px;
+    }
+}
+
+
+/* 17. ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ */
+
+@media (max-width: 400px) {
+    .container {
+        width: 92%;
+    }
+
+    .hero {
+        padding: 64px 0 58px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .figma-card {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .skill-card,
+    .project-card,
+    .about-card {
+        padding: 22px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+}
+
+
+/* 18. УСТРОЙСТВА БЕЗ НАВЕДЕНИЯ */
+
+@media (hover: none) {
+    .about-card:hover,
+    .skill-card:hover,
+    .figma-card:hover,
+    .project-card:hover,
+    .btn:hover {
+        transform: none;
+        box-shadow: var(--card-shadow);
+    }
+}
+
+
+/* 19. УМЕНЬШЕНИЕ ДВИЖЕНИЯ */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    body::before {
+        animation: none;
+    }
+
+    .about-card:hover,
+    .skill-card:hover,
+    .figma-card:hover,
+    .project-card:hover,
+    .btn:hover {
+        transform: none;
+    }
+}
